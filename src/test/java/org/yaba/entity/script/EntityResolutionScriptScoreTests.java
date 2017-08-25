@@ -14,31 +14,8 @@
 
 package org.yaba.entity.script;
 
-import org.elasticsearch.action.index.IndexRequestBuilder;
-import org.elasticsearch.action.search.SearchRequestBuilder;
-import org.elasticsearch.action.search.SearchResponse;
-import org.elasticsearch.common.collect.MapBuilder;
-import org.elasticsearch.common.lucene.search.function.CombineFunction;
-import org.elasticsearch.index.query.functionscore.ScoreFunctionBuilders;
-import org.elasticsearch.script.Script;
-import org.elasticsearch.script.ScriptService;
-import org.junit.Test;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ExecutionException;
-
-import static java.lang.Float.valueOf;
-import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
-import static org.elasticsearch.index.query.QueryBuilders.functionScoreQuery;
-import static org.elasticsearch.index.query.QueryBuilders.matchAllQuery;
-import static org.elasticsearch.test.hamcrest.ElasticsearchAssertions.assertAcked;
-import static org.hamcrest.Matchers.equalTo;
-
 public class EntityResolutionScriptScoreTests extends AbstractSearchScriptTestCase {
+    /*
 
     public static final String CITY = "city";
     public static final String PROPERTIES = "properties";
@@ -232,8 +209,9 @@ public class EntityResolutionScriptScoreTests extends AbstractSearchScriptTestCa
                         .setQuery(
                                 functionScoreQuery(
                                         (matchAllQuery()))
-                                        .boostMode(CombineFunction.REPLACE.getName())
-                                        .scoreMode("max")
+                                        .boostMode(CombineFunction.REPLACE)
+                                        .scoreMode(ScoreMode.MAX)
+                                        .
                                         .add(ScoreFunctionBuilders.scriptFunction(new Script(EntityResolutionScript.SCRIPT_NAME, ScriptService.ScriptType.INLINE, "native", params))))
                         .setSize(4);
 
@@ -269,4 +247,5 @@ public class EntityResolutionScriptScoreTests extends AbstractSearchScriptTestCa
         assertThat(searchResponse.getHits().getAt(3).getScore(), equalTo(
                 valueOf("0.049316783")));
     }
+    */
 }

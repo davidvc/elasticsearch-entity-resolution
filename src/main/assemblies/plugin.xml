@@ -5,21 +5,21 @@
         <format>zip</format>
     </formats>
     <includeBaseDirectory>false</includeBaseDirectory>
-    <dependencySets>
-        <dependencySet>
-            <outputDirectory>/</outputDirectory>
-            <useProjectArtifact>true</useProjectArtifact>
-            <useTransitiveFiltering>true</useTransitiveFiltering>
-            <excludes>
-                <exclude>org.elasticsearch:elasticsearch</exclude>
-            </excludes>
-        </dependencySet>
-    </dependencySets>
     <files>
         <file>
-            <source>${elasticsearch.tools.directory}/plugin-metadata/plugin-descriptor.properties</source>
-            <outputDirectory></outputDirectory>
+            <source>${project.basedir}/src/main/resources/plugin-descriptor.properties</source>
+            <outputDirectory>elasticsearch</outputDirectory>
             <filtered>true</filtered>
         </file>
     </files>
+    <dependencySets>
+        <dependencySet>
+            <excludes>
+                <exclude>*lucene*</exclude>
+            </excludes>
+            <outputDirectory>elasticsearch</outputDirectory>
+            <useProjectArtifact>true</useProjectArtifact>
+            <useTransitiveFiltering>true</useTransitiveFiltering>
+        </dependencySet>
+    </dependencySets>
 </assembly>

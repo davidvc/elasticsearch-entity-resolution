@@ -136,7 +136,6 @@ public final class EntityResolutionScript extends AbstractExecutableScript imple
     }
 
     private static String getCurrentFieldAsString(final Object field) {
-        // TODO - shouldn't we be cleaning these values?  Or is this too expensive?
         String result = "";
 
         if (field instanceof ScriptDocValues.Strings) {

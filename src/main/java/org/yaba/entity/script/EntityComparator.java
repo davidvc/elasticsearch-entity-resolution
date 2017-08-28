@@ -5,7 +5,6 @@ import no.priv.garshol.duke.Comparator;
 import no.priv.garshol.duke.Record;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -36,7 +35,7 @@ public class EntityComparator {
           }
 
           Comparator comp = (Comparator) params.get(propname).get(COMPARATOR);
-          ArrayList<Cleaner> cleanersList = (ArrayList<Cleaner>) params.get(propname).get(CLEANERS);
+          List<Cleaner> cleanersList = (List<Cleaner>) params.get(propname).get(CLEANERS);
 
           Double max = (Double) params.get(propname).get(HIGH);
           Double min = (Double) params.get(propname).get(LOW);
@@ -61,8 +60,9 @@ public class EntityComparator {
            }
 
            for (Cleaner cleaner : cleanersList) {
+              valueOne = cleaner.clean(valueOne);
               valueTwo = cleaner.clean(valueTwo);
-              if ((valueTwo == null) || valueTwo.equals("")) {
+              if (StringUtils.isEmpty(valueOne) || StringUtils.isEmpty(valueTwo)) {
                  continue valueTwoLoop;
               }
            }
